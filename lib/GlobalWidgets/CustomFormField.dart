@@ -2,35 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomFormField extends StatelessWidget {
-  CustomFormField(
-      {Key? key,
-        required this.controller,
-        required this.onChanged,
-        required this.hintText,
-        this.validator,
-        required this.obscureText,
-        this.isCenterHint,
-        required this.label,
-        this.numbersOnly = false,
-        this.color,
-        this.isEnabled})
-      : super(key: key);
-
-  final bool obscureText;
-  final FormFieldValidator<String>? validator;
   final TextEditingController controller;
   final Function(String)? onChanged;
   final String? hintText;
   final String label;
+  final bool obscureText;
   final bool? isCenterHint;
   final Color? color;
-  bool? isEnabled;
+  final bool isEnabled;
   final bool numbersOnly;
+  final FormFieldValidator<String>? validator;
+
+  const CustomFormField({
+    Key? key,
+    required this.controller,
+    required this.onChanged,
+    required this.hintText,
+    required this.label,
+    required this.obscureText,
+    this.isCenterHint,
+    this.color,
+    this.validator,
+    this.isEnabled = true,
+    this.numbersOnly = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      enabled: isEnabled ?? true,
+      enabled: isEnabled,
       validator: validator,
       obscureText: obscureText,
       keyboardType: numbersOnly
@@ -39,46 +39,27 @@ class CustomFormField extends StatelessWidget {
       inputFormatters: numbersOnly
           ? [FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,2}$'))]
           : null,
-      cursorColor: Colors.grey,
+      cursorColor: Colors.blue,
       style: TextStyle(
         color: color ?? Colors.black,
         fontWeight: FontWeight.bold,
       ),
       controller: controller,
       onChanged: onChanged,
-      textAlign: isCenterHint == null ? TextAlign.left : TextAlign.center,
+      textAlign: isCenterHint == true ? TextAlign.center : TextAlign.left,
       decoration: InputDecoration(
-        disabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: color ?? Colors.blue,
-          ),
-        ),
         labelText: label,
-        labelStyle: TextStyle(color: color ??Colors.grey,),
+        labelStyle: TextStyle(color: color ?? Colors.grey),
         hintText: hintText,
-        hintStyle: const TextStyle(
-          fontSize: 12,
-          color: Colors.blue,
+        hintStyle: const TextStyle(fontSize: 12, color: Colors.blue),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey),
         ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: color ?? Colors.grey,
-          ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.blue),
         ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: const BorderSide(
-            width: 1,
-            color: Colors.blue,
-          ),
-        ),
-        focusColor: Colors.blue,
-        errorBorder: UnderlineInputBorder(
-          borderSide: const BorderSide(
-            width: 1,
-            color: Colors.red,
-          ),
+        errorBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
         ),
       ),
     );

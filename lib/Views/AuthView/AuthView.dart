@@ -1,7 +1,7 @@
-import 'package:codixa/GlobalWidgets/HeaderWidget.dart';
-import 'package:codixa/Views/AuthView/Login/LoginWidget.dart';
-import 'package:codixa/Views/AuthView/widgets/AuthGlassWidget.dart';
-import 'package:codixa/Views/HomeView/widgets/EclipseContainer.dart';
+import 'package:sayHI/GlobalWidgets/HeaderWidget.dart';
+import 'package:sayHI/Views/AuthView/Login/LoginWidget.dart';
+import 'package:sayHI/Views/AuthView/widgets/AuthGlassWidget.dart';
+import 'package:sayHI/Views/HomeView/widgets/EclipseContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -16,68 +16,76 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthViewState extends State<AuthView> {
-  int index = 0;
+  bool isLogin = true;
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> authWidgets = [
-       LoginWidget(onTap: (){
-        setState(() {
-          index =1;
-        });
-      },),
-       RegisterWidget(onTap: (){
-         setState(() {
-           index =0;
-         });
-      },)];
     Size size = MediaQuery.sizeOf(context);
     double width = size.width;
     double height = size.height;
+
     return Scaffold(
-        body: ListView(
+      body: Stack(
         children: [
-          Container(
-          width: width,
-          height: height,
-          decoration: const BoxDecoration(color: Colors.black),
-          child: Stack(
-            alignment: AlignmentDirectional.center,
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'Assets/images/Background09.jpg',
+              width: width,
+              height: height,
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          // Dark Overlay for Contrast
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withOpacity(0.5),
+            ),
+          ),
+
+          // Decorative Eclipse Containers
+          const Positioned(bottom: 0, left: 0, child: EclipseContainer()),
+          const Positioned(top: 0, right: 0, child: EclipseContainer()),
+
+          // Main Column Layout
+          Column(
             children: [
-              Center(
-                child: Image.asset(
-                  'Assets/images/Background09.jpg',
-                  width: width * 0.8,
-                  fit: BoxFit.fitWidth,
+              // Header Section
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 70),
+                child: HeaderWidget(),
+              ),
+
+              const SizedBox(height: 50),
+
+              // Auth Card with Glass Effect
+              AuthGlassWidget(
+                child: isLogin
+                    ? LoginWidget(
+                  onTap: () {
+                    setState(() {
+                      isLogin = false;
+                    });
+                  },
+                )
+                    : RegisterWidget(
+                  onTap: () {
+                    setState(() {
+                      isLogin = true;
+                    });
+                  },
                 ),
               ),
-              Container(
-                width: width,
-                height: height,
-                color: Colors.black.withOpacity(0.5),
-              ),
-              Positioned(bottom: 0, left: 0, child: EclipseContainer()),
-              Positioned(top: 0, right: 0, child: EclipseContainer()),
-               Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, left: 70),
-                    child: HeaderWidget(),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  AuthGlassWidget(
-                    child: authWidgets[index],
-                  ),
-                  Spacer(),
-                  FooterTitles()
-                ],
-              ),
+
+              const Spacer(),
+
+              // Footer Section
+              const FooterTitles(),
             ],
           ),
-        ),
-        // const Spacer(),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }

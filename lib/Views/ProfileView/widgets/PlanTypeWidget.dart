@@ -1,60 +1,76 @@
 import 'package:flutter/material.dart';
 
-class PlanTypeWidget extends StatelessWidget {
+class PlanTypeWidget extends StatefulWidget {
+  final Function(String?)? onChanged;
+  final String? initialValue;
+  final List<String> planOptions;
+
   const PlanTypeWidget({
     super.key,
+    this.onChanged,
+    this.initialValue,
+    this.planOptions = const ['Free', 'Basic', 'Premium', 'Enterprise'],
   });
+
+  @override
+  State<PlanTypeWidget> createState() => _PlanTypeWidgetState();
+}
+
+class _PlanTypeWidgetState extends State<PlanTypeWidget> {
+  String? _selectedPlan;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedPlan = widget.initialValue;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: DropdownButtonFormField<String>(
-        decoration:  InputDecoration(
-          disabledBorder: OutlineInputBorder(
-            borderSide:  const BorderSide(
-              width: 1,
-              color:   Color(0xff115bbf),
-            ),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          labelText: 'Plane',
+        value: _selectedPlan,
+        decoration: InputDecoration(
+          suffixIcon: _selectedPlan != null
+              ? IconButton(
+            icon: const Icon(Icons.clear, color: Colors.grey),
+            onPressed: () {
+              setState(() => _selectedPlan = null);
+              if (widget.onChanged != null) {
+                widget.onChanged!(null);
+              }
+            },
+          )
+              : null,
+          labelText: 'Plan',
           labelStyle: const TextStyle(color: Colors.black),
-          hintText: 'Plane',
-          hintStyle: const TextStyle(
-            fontSize: 12,
-            color:Color(0xff115bbf),
-          ),
+          hintText: 'Select a Plan',
+          hintStyle: const TextStyle(fontSize: 12, color: Color(0xff115bbf)),
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 1,
-              color:  Colors.grey,
-            ),
+            borderSide: const BorderSide(width: 1, color: Colors.grey),
             borderRadius: BorderRadius.circular(10.0),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 1,
-              color:Color(0xff115bbf),
-            ),
+            borderSide: const BorderSide(width: 1, color: Color(0xff115bbf)),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          focusColor: const Color(0xff115bbf),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 1,
-              color: Colors.red,
-            ),
+            borderSide: const BorderSide(width: 1, color: Colors.red),
             borderRadius: BorderRadius.circular(10.0),
-// Customize the error border color
           ),
         ),
-        items: ['Basic', 'Premium'].map((String value) {
+        items: widget.planOptions.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),
           );
         }).toList(),
-        onChanged: (_) {},
+        onChanged: (value) {
+          setState(() => _selectedPlan = value);
+          if (widget.onChanged != null) {
+            widget.onChanged!(value);
+          }
+        },
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-class FeaturesData extends StatelessWidget {
+class FeaturesData extends StatefulWidget {
   const FeaturesData({
     Key? key,
     required this.title,
@@ -14,7 +14,16 @@ class FeaturesData extends StatelessWidget {
   final String image;
 
   @override
+  _FeaturesDataState createState() => _FeaturesDataState();
+}
+
+class _FeaturesDataState extends State<FeaturesData>
+    with SingleTickerProviderStateMixin {
+  bool _isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
+    // **Responsive Width**
     double width = ResponsiveValue<double>(
       context,
       defaultValue: 820.0,
@@ -24,22 +33,25 @@ class FeaturesData extends StatelessWidget {
       ],
     ).value!;
 
+    // **Responsive Font Sizes**
     double fontSize = ResponsiveValue<double>(
       context,
       defaultValue: 24.0,
       conditionalValues: [
-        Condition.smallerThan(name: TABLET, value: width * 0.026),
-        Condition.equals(name: TABLET, value: width * 0.02),
+        Condition.smallerThan(name: TABLET, value: width * 0.03),
+        Condition.equals(name: TABLET, value: width * 0.025),
         Condition.largerThan(name: TABLET, value: width * 0.027),
       ],
     ).value!;
 
-    double subTitleFontSize = fontSize / 2;
+    double subTitleFontSize = fontSize * 0.6;
+
+    // **Responsive Padding & Image Size**
     double paddingSize = ResponsiveValue<double>(
       context,
       defaultValue: 8.0,
       conditionalValues: [
-        const Condition.smallerThan(name: TABLET, value: 4.0),
+        const Condition.smallerThan(name: TABLET, value: 6.0),
         const Condition.largerThan(name: TABLET, value: 12.0),
       ],
     ).value!;
@@ -53,44 +65,70 @@ class FeaturesData extends StatelessWidget {
       ],
     ).value!;
 
-    return SizedBox(
-      width: width * 0.5,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(paddingSize),
-            child: Image.asset(image, width: imageSize),
-          ),
-          Expanded(
-            child: Padding(
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        width: width * 0.5,
+        padding: EdgeInsets.all(paddingSize),
+        transform: _isHovered
+            ? Matrix4.translationValues(0, -5, 0) // Hover lift effect
+            : Matrix4.identity(),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(_isHovered ? 0.15 : 0.1),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: _isHovered
+              ? [
+            BoxShadow(
+              color: Colors.blue.withOpacity(0.5),
+              blurRadius: 12,
+              spreadRadius: 2,
+            ),
+          ]
+              : [],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
               padding: EdgeInsets.all(paddingSize),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: fontSize,
-                    ),
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    subTitle,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: subTitleFontSize,
-                    ),
-                    maxLines: 9,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 16.0),
-                ],
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                width: _isHovered ? imageSize * 1.1 : imageSize,
+                child: Image.asset(widget.image),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(paddingSize),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: fontSize,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      widget.subTitle,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: subTitleFontSize,
+                      ),
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,10 +1,10 @@
-import 'package:codixa/Views/HomeView/widgets/EclipseContainer.dart';
-import 'package:codixa/GlobalWidgets/GlassContainer.dart';
-import 'package:codixa/Views/HomeView/widgets/SliderGlassWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:sayHI/Views/HomeView/widgets/EclipseContainer.dart';
+import 'package:sayHI/GlobalWidgets/GlassContainer.dart';
+import 'package:sayHI/Views/HomeView/widgets/SliderGlassWidget.dart';
 
 class ExamplesSection extends StatefulWidget {
-  const ExamplesSection({super.key});
+  const ExamplesSection({Key? key}) : super(key: key);
 
   @override
   _ExamplesSectionState createState() => _ExamplesSectionState();
@@ -30,6 +30,7 @@ class _ExamplesSectionState extends State<ExamplesSection> {
     Size size = MediaQuery.sizeOf(context);
     double width = size.width;
     double height = size.height;
+
     return Container(
       width: width,
       height: height,
@@ -37,36 +38,44 @@ class _ExamplesSectionState extends State<ExamplesSection> {
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
+          // Background Image
           Center(
             child: Image.asset(
-              'Assets/images/Background02.jpg',
+              'assets/images/background02.jpg',  // Updated asset path
               width: width,
               fit: BoxFit.fill,
             ),
           ),
+          // Overlay
           Container(
             width: width,
             height: height,
             color: Colors.black.withOpacity(0.8),
           ),
+          // Positioned Eclipse Containers
           Positioned(top: 0, left: 0, child: EclipseContainer()),
           Positioned(bottom: 0, right: 0, child: EclipseContainer()),
+
+          // Main Content
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 100,),
+              const SizedBox(height: 100),
+              // Title
               const Center(
                 child: Text(
-                  'Examples of our tool',
+                  'Explore Our Features',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 50,
-                     
+                    color: Colors.white,
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const SizedBox(height: 50,),
+              const SizedBox(height: 50),
+
+              // Scrollable Row
               Row(
                 children: [
                   const Spacer(),
@@ -80,25 +89,33 @@ class _ExamplesSectionState extends State<ExamplesSection> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Spacer(flex: 5,),
+                          const Spacer(flex: 5),
                           const Padding(
                             padding: EdgeInsets.only(left: 15.0),
-                            child: Text('Service \nexamples', style: TextStyle(
+                            child: Text(
+                              'Feature \nShowcase',
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 50,
-                               
-                            ),),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                          const Spacer(flex: 4,),
+                          const Spacer(flex: 4),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Image.asset('Assets/icons/AppSymbol.png', width: 50,),
+                            child: Image.asset(
+                              'assets/icons/app_symbol.png', // Updated asset path
+                              width: 50,
+                            ),
                           ),
-                          const Spacer(flex: 1,),
+                          const Spacer(flex: 1),
                         ],
                       ),
                     ),
                   ),
+
+                  // Horizontal Scrolling Cards
                   SizedBox(
                     width: 1000,
                     height: 500,
@@ -113,9 +130,18 @@ class _ExamplesSectionState extends State<ExamplesSection> {
                         controller: _scrollController,
                         child: const Row(
                           children: [
-                            SliderGlassWidget(title: 'image gallery code', image: 'Assets/images/Slider1.png',),
-                            SliderGlassWidget(title: 'Nav bar code', image: 'Assets/images/Slider2.png',),
-                            SliderGlassWidget(title: 'Dice code', image: 'Assets/images/Slider3.png',),
+                            SliderGlassWidget(
+                              title: 'Chat Interface',
+                              image: 'assets/images/chat_feature.png', // Updated asset
+                            ),
+                            SliderGlassWidget(
+                              title: 'User Profiles',
+                              image: 'assets/images/profile_feature.png', // Updated asset
+                            ),
+                            SliderGlassWidget(
+                              title: 'Voice Messages',
+                              image: 'assets/images/voice_feature.png', // Updated asset
+                            ),
                           ],
                         ),
                       ),
@@ -127,7 +153,10 @@ class _ExamplesSectionState extends State<ExamplesSection> {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.asset('Assets/icons/mouseIcon.png',width: 50,),
+                child: Image.asset(
+                  'assets/icons/mouse_icon.png', // Updated asset path
+                  width: 50,
+                ),
               ),
             ],
           ),

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({super.key});
+  final double width;
+
+  const SearchWidget({super.key, this.width = 300});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: 300,
+        width: width,
         child: TextFormField(
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
@@ -20,11 +22,10 @@ class SearchWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(50.0),
             ),
             prefixIcon: const Padding(
-              padding: EdgeInsets.only(left: 15.0,right: 15),
-              child: Icon(Icons.search, color: Colors.grey ,size: 25,),
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Icon(Icons.search, color: Colors.grey, size: 25),
             ),
-            hintText: 'Search',
-
+            hintText: 'Search...',
             hintStyle: const TextStyle(color: Colors.grey),
             filled: true,
             fillColor: const Color(0xff091e3a),
@@ -32,11 +33,9 @@ class SearchWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(50.0),
               borderSide: BorderSide.none,
             ),
-            contentPadding:
-            const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+            contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           ),
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.done,
+          textInputAction: TextInputAction.search,
         ),
       ),
     );

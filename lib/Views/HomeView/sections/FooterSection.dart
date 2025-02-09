@@ -1,18 +1,18 @@
-import 'package:codixa/GlobalWidgets/CustomButton.dart';
 import 'package:flutter/material.dart';
-
-import '../../../GlobalWidgets/FooterTitlesWidget.dart';
+import 'package:sayHI/GlobalWidgets/CustomButton.dart';
+import 'package:sayHI/GlobalWidgets/FooterTitlesWidget.dart';
+import 'package:sayHI/Views/ContactView/ContactView.dart';
+import 'package:sayHI/Views/AboutView/AboutView.dart';
 
 class FooterSection extends StatelessWidget {
-  const FooterSection({
-    Key? key,
-  }) : super(key: key);
+  const FooterSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     double width = size.width;
     double height = size.height;
+
     return Container(
       width: width,
       height: height / 2.7,
@@ -22,9 +22,15 @@ class FooterSection extends StatelessWidget {
         children: [
           Column(
             children: [
-              Image.asset(
-                'Assets/images/AppLogo.png',
-                width: 200,
+              GestureDetector(
+                onTap: () {
+                  // Navigate to Home when clicking on the logo
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: Image.asset(
+                  'assets/images/app_logo.png', // Updated path
+                  width: 200,
+                ),
               ),
               const Text(
                 '      Do you want the latest news\n     and updates? Subscribe Now.',
@@ -39,21 +45,29 @@ class FooterSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    EmailFormField(),
-                    const SizedBox(
-                      width: 30,
-                    ),
+                    const EmailFormField(),
+                    const SizedBox(width: 30),
                     CustomButton(
-                        width: width * 0.09,
-                        height: 40,
-                        title: 'subscribe ',
-                        fontSize: width * 0.01),
+                      width: width * 0.09,
+                      height: 40,
+                      title: 'Subscribe',
+                      fontSize: width * 0.01,
+                      onTap: () {
+                        // Placeholder for subscription action
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Subscription Successful!"),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                 child: Divider(
                     height: 3,
                     thickness: 0.5,
@@ -61,13 +75,26 @@ class FooterSection extends StatelessWidget {
               ),
             ],
           ),
-          const FooterTitles()
+
+          // Interactive Footer Links
+          FooterTitles(onAboutTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AboutView()),
+            );
+          }, onContactTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ContactView()),
+            );
+          })
         ],
       ),
     );
   }
 }
 
+// Updated EmailFormField
 class EmailFormField extends StatelessWidget {
   const EmailFormField({super.key});
 
@@ -85,7 +112,7 @@ class EmailFormField extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          prefixIcon: const Icon(Icons.person, color: Colors.white),
+          prefixIcon: const Icon(Icons.email, color: Colors.white),
           hintText: 'Enter your email',
           hintStyle: const TextStyle(color: Colors.grey),
           filled: true,
@@ -95,7 +122,7 @@ class EmailFormField extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+          const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
         ),
         keyboardType: TextInputType.emailAddress,
         textInputAction: TextInputAction.done,
