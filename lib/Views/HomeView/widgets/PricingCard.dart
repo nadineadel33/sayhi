@@ -26,8 +26,7 @@ class PricingCard extends StatefulWidget {
   _PricingCardState createState() => _PricingCardState();
 }
 
-class _PricingCardState extends State<PricingCard>
-    with SingleTickerProviderStateMixin {
+class _PricingCardState extends State<PricingCard> with SingleTickerProviderStateMixin {
   bool _isHovered = false;
 
   @override
@@ -63,7 +62,7 @@ class _PricingCardState extends State<PricingCard>
               // **Top Icon**
               Center(
                 child: Image.asset(
-                  'assets/icons/app_symbol_gray_color.png', // ✅ Ensure correct path
+                  'assets/icons/AppSymbolGrayColor.png', // ✅ Ensure correct path
                   color: widget.textColor,
                   height: 40,
                 ),
@@ -128,8 +127,7 @@ class _PricingCardState extends State<PricingCard>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12.0, horizontal: 24.0),
+                      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                     ),
                     child: const Text("Get Started"),
                   ),

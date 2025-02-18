@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:sayHI/GlobalWidgets/HeaderWidget.dart';
-import 'package:sayHI/Views/AuthView/Login/LoginWidget.dart';
+import 'package:sayHI/Views/AuthView/LoginWidget.dart';
+import 'package:sayHI/Views/AuthView/Register.dart';
 import 'package:sayHI/Views/AuthView/widgets/AuthGlassWidget.dart';
 import 'package:sayHI/Views/HomeView/widgets/EclipseContainer.dart';
-import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../GlobalWidgets/FooterTitlesWidget.dart';
-import 'Register/RegisterWidget.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({Key? key}) : super(key: key);
@@ -63,19 +62,19 @@ class _AuthViewState extends State<AuthView> {
               AuthGlassWidget(
                 child: isLogin
                     ? LoginWidget(
-                  onTap: () {
-                    setState(() {
-                      isLogin = false;
-                    });
-                  },
-                )
+                        onTap: () {
+                          setState(() {
+                            isLogin = false;
+                          });
+                        },
+                      )
                     : RegisterWidget(
-                  onTap: () {
-                    setState(() {
-                      isLogin = true;
-                    });
-                  },
-                ),
+                        onTap: () {
+                          setState(() {
+                            isLogin = true;
+                          });
+                        },
+                      ),
               ),
 
               const Spacer(),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../../GlobalWidgets/CustomFormField.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key, this.onTap});
+class RegisterWidget extends StatefulWidget {
+  const RegisterWidget({super.key, this.onTap});
   final void Function()? onTap;
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterWidget> createState() => _RegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterState extends State<RegisterWidget> {
   final TextEditingController _mailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -46,7 +46,8 @@ class _RegisterState extends State<Register> {
                 children: [
                   const Text(
                     'Register',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+                    style:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   const SizedBox(height: 20),
 
@@ -73,7 +74,8 @@ class _RegisterState extends State<Register> {
                     label: 'Email',
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter your email';
-                      if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(value)) {
+                      if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                          .hasMatch(value)) {
                         return 'Enter a valid email';
                       }
                       return null;
@@ -89,10 +91,10 @@ class _RegisterState extends State<Register> {
                     hintText: 'Enter your password',
                     obscureText: obscurePassword,
                     label: 'Password',
-                    suffixIcon: IconButton(
-                      icon: Icon(obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
-                      onPressed: () => setState(() => obscurePassword = !obscurePassword),
-                    ),
+                    // suffixIcon: IconButton(
+                    //   icon: Icon(obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
+                    //   onPressed: () => setState(() => obscurePassword = !obscurePassword),
+                    // ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter a password';
                       if (value.length < 6) return 'Password must be at least 6 characters';
@@ -109,10 +111,10 @@ class _RegisterState extends State<Register> {
                     hintText: 'Confirm your password',
                     obscureText: obscureConfirmPassword,
                     label: 'Confirm Password',
-                    suffixIcon: IconButton(
-                      icon: Icon(obscureConfirmPassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
-                      onPressed: () => setState(() => obscureConfirmPassword = !obscureConfirmPassword),
-                    ),
+                    // suffixIcon: IconButton(
+                    //   icon: Icon(obscureConfirmPassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
+                    //   onPressed: () => setState(() => obscureConfirmPassword = !obscureConfirmPassword),
+                    // ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please confirm your password';
                       if (value != _passwordController.text) return 'Passwords do not match';
@@ -134,7 +136,8 @@ class _RegisterState extends State<Register> {
                         // Perform registration
                       }
                     },
-                    child: const Text('Register', style: TextStyle(color: Colors.white, fontSize: 16)),
+                    child:
+                        const Text('Register', style: TextStyle(color: Colors.white, fontSize: 16)),
                   ),
 
                   const SizedBox(height: 16),
@@ -142,7 +145,8 @@ class _RegisterState extends State<Register> {
                   // Already have an account? Login Link
                   TextButton(
                     onPressed: widget.onTap,
-                    child: const Text('Already have an account? Log in', style: TextStyle(color: Colors.blue, fontSize: 14)),
+                    child: const Text('Already have an account? Log in',
+                        style: TextStyle(color: Colors.blue, fontSize: 14)),
                   ),
                 ],
               ),
