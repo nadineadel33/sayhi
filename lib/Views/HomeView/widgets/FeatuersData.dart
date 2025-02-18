@@ -17,8 +17,7 @@ class FeaturesData extends StatefulWidget {
   _FeaturesDataState createState() => _FeaturesDataState();
 }
 
-class _FeaturesDataState extends State<FeaturesData>
-    with SingleTickerProviderStateMixin {
+class _FeaturesDataState extends State<FeaturesData> {
   bool _isHovered = false;
 
   @override
@@ -68,67 +67,79 @@ class _FeaturesDataState extends State<FeaturesData>
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
+      child: TweenAnimationBuilder(
         duration: const Duration(milliseconds: 300),
-        width: width * 0.5,
-        padding: EdgeInsets.all(paddingSize),
-        transform: _isHovered
-            ? Matrix4.translationValues(0, -5, 0) // Hover lift effect
-            : Matrix4.identity(),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(_isHovered ? 0.15 : 0.1),
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: _isHovered
-              ? [
-            BoxShadow(
-              color: Colors.blue.withOpacity(0.5),
-              blurRadius: 12,
-              spreadRadius: 2,
-            ),
-          ]
-              : [],
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
+        tween: Tween<double>(begin: 1.0, end: _isHovered ? 1.05 : 1.0),
+        builder: (context, double scale, child) {
+          return Transform.scale(
+            scale: scale,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              width: width * 0.5,
               padding: EdgeInsets.all(paddingSize),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                width: _isHovered ? imageSize * 1.1 : imageSize,
-                child: Image.asset(widget.image),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(_isHovered ? 0.2 : 0.1),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: _isHovered
+                    ? [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.5),
+                    blurRadius: 12,
+                    spreadRadius: 2,
+                  ),
+                ]
+                    : [],
               ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(paddingSize),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: fontSize,
-                        fontWeight: FontWeight.bold,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(paddingSize),
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      opacity: _isHovered ? 1.0 : 0.9,
+                      child: Transform.scale(
+                        scale: _isHovered ? 1.1 : 1.0,
+                        child: Image.asset(
+                          widget.image,
+                          width: imageSize,
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 8.0),
-                    Text(
-                      widget.subTitle,
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: subTitleFontSize,
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.all(paddingSize),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.title,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8.0),
+                          Text(
+                            widget.subTitle,
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: subTitleFontSize,
+                            ),
+                            maxLines: 4,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

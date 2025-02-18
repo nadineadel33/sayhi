@@ -75,61 +75,69 @@ class _FeatureCardState extends State<FeatureCard> {
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
+      child: TweenAnimationBuilder(
         duration: const Duration(milliseconds: 300),
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: _isHovered
-              ? [
-            BoxShadow(
-              color: Colors.blue.withOpacity(0.4),
-              blurRadius: 8,
-              spreadRadius: 2,
-            ),
-          ]
-              : [
-            BoxShadow(
-              color: Colors.blue.withOpacity(0.2),
-              blurRadius: 6,
-              spreadRadius: 2,
-            ),
-          ],
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(widget.image, width: 40),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
+        tween: Tween<double>(begin: 1.0, end: _isHovered ? 1.05 : 1.0),
+        builder: (context, double scale, child) {
+          return Transform.scale(
+            scale: scale,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(_isHovered ? 0.2 : 0.1),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(_isHovered ? 0.5 : 0.2),
+                    blurRadius: _isHovered ? 10 : 6,
+                    spreadRadius: _isHovered ? 3 : 2,
+                  ),
+                ],
+              ),
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    opacity: _isHovered ? 1.0 : 0.9,
+                    child: Transform.scale(
+                      scale: _isHovered ? 1.1 : 1.0,
+                      child: Image.asset(widget.image, width: 40),
                     ),
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    widget.subTitle,
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.title,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          widget.subTitle,
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                          ),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

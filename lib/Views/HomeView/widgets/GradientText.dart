@@ -17,7 +17,9 @@ class GradientText extends StatefulWidget {
 
 class _GradientTextState extends State<GradientText> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<List<Color>> _gradientAnimation;
+  late Animation<Color?> _color1;
+  late Animation<Color?> _color2;
+  late Animation<Color?> _color3;
 
   @override
   void initState() {
@@ -28,24 +30,21 @@ class _GradientTextState extends State<GradientText> with SingleTickerProviderSt
       vsync: this,
     )..repeat(reverse: true);
 
-    _gradientAnimation = _controller.drive(
-      TweenSequence<List<Color>>([
-        TweenSequenceItem(
-          weight: 1.0,
-          tween: Tween(
-            begin: [Colors.white, Color(0xff0266C2), Color(0xff0266C2)],
-            end: [Color(0xff0266C2), Colors.white, Color(0xff0266C2)],
-          ),
-        ),
-        TweenSequenceItem(
-          weight: 1.0,
-          tween: Tween(
-            begin: [Color(0xff0266C2), Colors.white, Color(0xff0266C2)],
-            end: [Colors.white, Color(0xff0266C2), Colors.white],
-          ),
-        ),
-      ]),
-    );
+    // Define individual color animations
+    _color1 = ColorTween(
+      begin: Colors.white,
+      end: const Color(0xff0266C2),
+    ).animate(_controller);
+
+    _color2 = ColorTween(
+      begin: const Color(0xff0266C2),
+      end: Colors.white,
+    ).animate(_controller);
+
+    _color3 = ColorTween(
+      begin: const Color(0xff0266C2),
+      end: const Color(0xff0266C2), // Keeps constant if needed
+    ).animate(_controller);
   }
 
   @override
@@ -57,7 +56,7 @@ class _GradientTextState extends State<GradientText> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _gradientAnimation,
+      animation: _controller,
       builder: (context, child) {
         return TextGradiate(
           text: Text(
@@ -71,7 +70,7 @@ class _GradientTextState extends State<GradientText> with SingleTickerProviderSt
             maxLines: 5,
             textAlign: TextAlign.center,
           ),
-          colors: _gradientAnimation.value,
+          colors: [_color1.value ?? Colors.white, _color2.value ?? Colors.blue, _color3.value ?? Colors.blue],
           gradientType: GradientType.linear,
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
