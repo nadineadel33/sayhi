@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
+import 'package:image_picker/image_picker.dart';
 import 'widgets/ProfileFormField.dart';
 import 'widgets/EditButton.dart';
 
@@ -131,6 +130,7 @@ class _ProfileViewState extends State<ProfileView> {
                       const SnackBar(content: Text("Profile Updated Successfully!")),
                     );
                   },
+                  text: "Update Profile",
                 ),
               ],
             ),

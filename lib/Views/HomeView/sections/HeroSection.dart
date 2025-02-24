@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sayHI/GlobalWidgets/CustomButton.dart';
-import 'package:sayHI/GlobalWidgets/HeaderWidget.dart';
-import 'package:sayHI/Views/HomeView/widgets/GradientText.dart';
+
+import '../../../GlobalWidgets/CustomButton.dart';
+import '../../../GlobalWidgets/HeaderWidget.dart';
+import '../widgets/GradientText.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({
@@ -21,10 +22,11 @@ class HeroSection extends StatelessWidget {
       child: Stack(
         children: [
           Center(
-              child: Image.asset(
-            'Assets/images/Background02.jpg', // Keeping the same background
-            width: width * 0.5,
-          )),
+            child: Image.asset(
+              'Assets/images/Background02.jpg',
+              width: width * 0.5,
+            ),
+          ),
           Container(
             width: width,
             height: height,
@@ -40,8 +42,13 @@ class HeroSection extends StatelessWidget {
                 height: 100,
               ),
               GradientText(
-                text: 'Sign Language Translation\n Made Easy',
+                text: 'Breaking Barriers with \nTechnology',
                 fontSize: width * 0.05,
+              ),
+              const Text(
+                'Sign Language Translation Made Simple',
+                style: TextStyle(color: Colors.white, fontSize: 30),
+                textAlign: TextAlign.center,
               ),
               const Spacer(
                 flex: 2,
@@ -56,12 +63,10 @@ class HeroSection extends StatelessWidget {
                 flex: 4,
               ),
               GradientText(
-                text: 'Powered By AI & ML',
+                text: 'Powered by AI & ML',
                 fontSize: width * 0.019,
               ),
-              const Spacer(
-                flex: 3,
-              ),
+              const Spacer(flex: 3),
             ],
           ),
         ],

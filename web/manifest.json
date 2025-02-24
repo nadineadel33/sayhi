@@ -1,6 +1,6 @@
 {
-    "name": "codixa",
-    "short_name": "codixa",
+    "name": "SayHi",
+    "short_name": "SayHi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

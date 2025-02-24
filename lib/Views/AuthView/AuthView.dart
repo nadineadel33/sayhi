@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sayHI/GlobalWidgets/HeaderWidget.dart';
 import 'package:sayHI/Views/AuthView/LoginWidget.dart';
-import 'package:sayHI/Views/AuthView/Register.dart';
 import 'package:sayHI/Views/AuthView/widgets/AuthGlassWidget.dart';
 import 'package:sayHI/Views/HomeView/widgets/EclipseContainer.dart';
 
 import '../../GlobalWidgets/FooterTitlesWidget.dart';
+import 'Register.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({Key? key}) : super(key: key);
@@ -51,8 +51,8 @@ class _AuthViewState extends State<AuthView> {
           Column(
             children: [
               // Header Section
-              Padding(
-                padding: const EdgeInsets.only(top: 20, left: 70),
+              const Padding(
+                padding: EdgeInsets.only(top: 20, left: 70),
                 child: HeaderWidget(),
               ),
 
@@ -68,7 +68,7 @@ class _AuthViewState extends State<AuthView> {
                           });
                         },
                       )
-                    : RegisterWidget(
+                    : RegisterView(
                         onTap: () {
                           setState(() {
                             isLogin = true;

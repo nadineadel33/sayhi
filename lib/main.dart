@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:sayHI/Views/HomeView/HomeView.dart';
 
@@ -9,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      theme: ThemeData(),
+      title: 'Sign Language',
       home: const HomeView(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

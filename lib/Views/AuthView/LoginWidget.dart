@@ -83,10 +83,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                   hintText: 'Enter your password',
                   obscureText: obscureText,
                   label: 'Password',
-                  // suffixIcon: IconButton(
-                  //   icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility, color: Colors.white),
-                  //   onPressed: () => setState(() => obscureText = !obscureText),
-                  // ),
+                  suffixIcon: IconButton(
+                    icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility, color: Colors.white),
+                    onPressed: () => setState(() => obscureText = !obscureText),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) return 'Please enter your password';
                     return null;

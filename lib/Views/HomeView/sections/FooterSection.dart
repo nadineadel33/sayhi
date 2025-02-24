@@ -28,7 +28,7 @@ class FooterSection extends StatelessWidget {
                   Navigator.pushNamed(context, '/home');
                 },
                 child: Image.asset(
-                  'assets/images/AppLogo.png', // Updated path
+                  'Assets/icons/AppSymbol.png', // Updated path
                   width: 200,
                 ),
               ),
@@ -66,8 +66,12 @@ class FooterSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-                child: Divider(height: 3, thickness: 0.5, color: Colors.grey.withOpacity(0.3)),
+                padding:
+                const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                child: Divider(
+                    height: 3,
+                    thickness: 0.5,
+                    color: Colors.grey.withOpacity(0.3)),
               ),
             ],
           ),
@@ -117,7 +121,8 @@ class EmailFormField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30.0),
             borderSide: BorderSide.none,
           ),
-          contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
         ),
         keyboardType: TextInputType.emailAddress,
         textInputAction: TextInputAction.done,

@@ -12,6 +12,7 @@ class CustomFormField extends StatelessWidget {
   final bool isEnabled;
   final bool numbersOnly;
   final FormFieldValidator<String>? validator;
+  final Widget? suffixIcon;
 
   const CustomFormField({
     Key? key,
@@ -25,6 +26,7 @@ class CustomFormField extends StatelessWidget {
     this.validator,
     this.isEnabled = true,
     this.numbersOnly = false,
+    this.suffixIcon,
   }) : super(key: key);
 
   @override
@@ -61,6 +63,7 @@ class CustomFormField extends StatelessWidget {
         errorBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.red),
         ),
+        suffixIcon: suffixIcon,
       ),
     );
   }

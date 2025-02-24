@@ -1,11 +1,11 @@
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white) 
-# Codixa UI (Flutter Web) - UI Generator Website
+# SayHi UI (Flutter Web) - UI Generator Website
 
-Codixa is a Flutter-based web application that leverages the power of the Gemini API to generate Flutter UI components based on user prompts. The generated UI is displayed directly on the website, providing users with an instant preview of their prompt results. Additionally, Codixa features a library of popular Flutter widgets, allowing users to explore and view the source code of these widgets.
+SayHi is a Flutter-based web application that leverages the power of the Gemini API to generate Flutter UI components based on user prompts. The generated UI is displayed directly on the website, providing users with an instant preview of their prompt results. Additionally, SayHi features a library of popular Flutter widgets, allowing users to explore and view the source code of these widgets.
 
 ## Features
 
-- **UI Generation by Prompt**: Enter a prompt, and Codixa will generate the corresponding Flutter UI using the Gemini API. The result is displayed immediately on the website.
+- **UI Generation by Prompt**: Enter a prompt, and SayHi will generate the corresponding Flutter UI using the Gemini API. The result is displayed immediately on the website.
 - **Widget Library**: Browse through a collection of famous Flutter widgets. Select any widget to view its Flutter code.
 - **Responsive Design**: The website is optimized for various screen sizes, ensuring a seamless experience on both desktop and mobile devices.
 - **Code Display**: View the Flutter code of generated UIs and library widgets directly on the website, making it easy to learn and implement.
@@ -31,12 +31,12 @@ Codixa is a Flutter-based web application that leverages the power of the Gemini
 
 ## Installation
 
-To run Codixa locally, follow these steps:
+To run SayHi locally, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/3MR7OSSAM/codixa.git
-   cd codixa
+   git clone https://github.com/3MR7OSSAM/SayHi.git
+   cd SayHi
    ```
 
 2. **Install Dependencies**:
@@ -70,7 +70,7 @@ To run Codixa locally, follow these steps:
 
 ## Contribution
 
-We welcome contributions! If you'd like to contribute to Codixa, please follow these steps:
+We welcome contributions! If you'd like to contribute to SayHi, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature/your-feature`).
