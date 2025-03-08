@@ -22,8 +22,8 @@ class AuthGlassWidget extends StatelessWidget {
             width: width * 0.6,
             height: height * 0.7,
             blur: 15,
-            borderRadius: 20,
-            opacity: 0.2,
+            // borderRadius: 20,
+            // opacity: 0.2,
             child: const SizedBox(),
           ),
 

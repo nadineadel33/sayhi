@@ -131,7 +131,7 @@ class _ProfileViewState extends State<ProfileView> {
                       const SnackBar(content: Text("Profile Updated Successfully!")),
                     );
                   },
-                  text: "Update Profile",
+                  // text: "Update Profile",
                 ),
               ],
             ),

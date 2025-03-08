@@ -89,10 +89,10 @@ class _RegisterState extends State<Register> {
                     hintText: 'Enter your password',
                     obscureText: obscurePassword,
                     label: 'Password',
-                    suffixIcon: IconButton(
-                      icon: Icon(obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
-                      onPressed: () => setState(() => obscurePassword = !obscurePassword),
-                    ),
+                    // suffixIcon: IconButton(
+                    //   icon: Icon(obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
+                    //   onPressed: () => setState(() => obscurePassword = !obscurePassword),
+                    // ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter a password';
                       if (value.length < 6) return 'Password must be at least 6 characters';
@@ -109,10 +109,10 @@ class _RegisterState extends State<Register> {
                     hintText: 'Confirm your password',
                     obscureText: obscureConfirmPassword,
                     label: 'Confirm Password',
-                    suffixIcon: IconButton(
-                      icon: Icon(obscureConfirmPassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
-                      onPressed: () => setState(() => obscureConfirmPassword = !obscureConfirmPassword),
-                    ),
+                    // suffixIcon: IconButton(
+                    //   icon: Icon(obscureConfirmPassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
+                    //   onPressed: () => setState(() => obscureConfirmPassword = !obscureConfirmPassword),
+                    // ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please confirm your password';
                       if (value != _passwordController.text) return 'Passwords do not match';

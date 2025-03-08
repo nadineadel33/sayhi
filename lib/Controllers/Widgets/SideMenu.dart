@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../HomeView/HomeView.dart';
-import '../AboutView/AboutView.dart';
-import '../ContactView/ContactView.dart';
-import '../ProfileView/ProfileView.dart';
-import '../AuthView/SignIn.dart';
-import '../AuthView/Register.dart';
-import '../SettingsView/SettingsView.dart';
+import 'package:sayHI/Views/AboutView/AboutView.dart';
+import 'package:sayHI/Views/AuthView/Register.dart';
+import 'package:sayHI/Views/AuthView/SignIn.dart';
+import 'package:sayHI/Views/ContactView/ContactView.dart';
+import 'package:sayHI/Views/HomeView/HomeView.dart';
+import 'package:sayHI/Views/ProfileView/ProfileView.dart';
+import 'package:sayHI/Views/SettingsView/SettingsView.dart';
+
 
 class SideMenu extends StatelessWidget {
   final Function(Widget) onPageSelected;

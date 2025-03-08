@@ -24,7 +24,7 @@ class HeroSection extends StatelessWidget {
           // Background Image
           Center(
             child: Image.asset(
-              'assets/images/background02.jpg', // Updated path
+              'assets/images/background02.jpg',
               width: width * 0.5,
             ),
           ),
@@ -74,6 +74,19 @@ class HeroSection extends StatelessWidget {
                 },
               ),
 
+              const SizedBox(height: 20), // Added space
+
+              // Go to Campaigns Button
+              CustomButton(
+                width: width * 0.1,
+                height: height * 0.07,
+                title: 'Explore Campaigns',
+                fontSize: fontSize,
+                onTap: () {
+                  Navigator.pushNamed(context, '/campaigns'); // Navigate to CampaignView
+                },
+              ),
+
               const Spacer(flex: 4),
 
               // Powered By AI Text
@@ -82,7 +95,7 @@ class HeroSection extends StatelessWidget {
                 fontSize: width * 0.019,
               ),
               Image.asset(
-                'assets/images/ai_logo.png', // Updated AI logo
+                'assets/images/ai_logo.png',
                 height: height * 0.12,
               ),
 
