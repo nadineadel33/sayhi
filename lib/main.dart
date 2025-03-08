@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:sayHI/Views/HomeView/HomeView.dart';
-import 'package:sayHI/Views/CampaignView/CampaignView.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -21,14 +19,12 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 451, end: 800, name: TABLET),
           const Breakpoint(start: 801, end: 1920, name: DESKTOP),
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+          ////////////////////////////////////////////////////////////////
         ],
       ),
-      theme: ThemeData(),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeView(),
-        '/campaigns': (context) => const CampaignView(),
-      },
+      title: 'Sign Language',
+      home: const HomeView(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

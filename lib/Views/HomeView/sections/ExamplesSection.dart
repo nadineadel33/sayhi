@@ -41,7 +41,7 @@ class _ExamplesSectionState extends State<ExamplesSection> {
           // Background Image
           Center(
             child: Image.asset(
-              'assets/images/background02.jpg',  // Updated asset path
+              'Assets/images/background02.jpg',  // Updated asset path
               width: width,
               fit: BoxFit.fill,
             ),
@@ -105,7 +105,7 @@ class _ExamplesSectionState extends State<ExamplesSection> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Image.asset(
-                              'assets/icons/app_symbol.png', // Updated asset path
+                              'Assets/icons/AppSymbol.png', // Updated asset path
                               width: 50,
                             ),
                           ),
@@ -132,15 +132,15 @@ class _ExamplesSectionState extends State<ExamplesSection> {
                           children: [
                             SliderGlassWidget(
                               title: 'Chat Interface',
-                              image: 'assets/images/chat_feature.png', // Updated asset
+                              image: 'Assets/icons/AppSymbol.png', // Updated asset
                             ),
                             SliderGlassWidget(
                               title: 'User Profiles',
-                              image: 'assets/images/profile_feature.png', // Updated asset
+                              image: 'Assets/icons/AppSymbol.png', // Updated asset
                             ),
                             SliderGlassWidget(
                               title: 'Voice Messages',
-                              image: 'assets/images/voice_feature.png', // Updated asset
+                              image: 'Assets/icons/AppSymbol.png', // Updated asset
                             ),
                           ],
                         ),
@@ -154,7 +154,7 @@ class _ExamplesSectionState extends State<ExamplesSection> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Image.asset(
-                  'assets/icons/mouse_icon.png', // Updated asset path
+                  'Assets/icons/mouseIcon.png', // Updated asset path
                   width: 50,
                 ),
               ),

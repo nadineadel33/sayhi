@@ -1,13 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:sayHI/GlobalWidgets/HeaderWidget.dart';
 import 'package:sayHI/Views/AuthView/LoginWidget.dart';
-import 'package:sayHI/Views/AuthView/Register.dart';
 import 'package:sayHI/Views/AuthView/widgets/AuthGlassWidget.dart';
 import 'package:sayHI/Views/HomeView/widgets/EclipseContainer.dart';
-import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../GlobalWidgets/FooterTitlesWidget.dart';
-import 'Register/Register.dart';
+import 'Register.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({Key? key}) : super(key: key);
@@ -53,8 +51,8 @@ class _AuthViewState extends State<AuthView> {
           Column(
             children: [
               // Header Section
-              Padding(
-                padding: const EdgeInsets.only(top: 20, left: 70),
+              const Padding(
+                padding: EdgeInsets.only(top: 20, left: 70),
                 child: HeaderWidget(),
               ),
 
@@ -64,19 +62,19 @@ class _AuthViewState extends State<AuthView> {
               AuthGlassWidget(
                 child: isLogin
                     ? LoginWidget(
-                  onTap: () {
-                    setState(() {
-                      isLogin = false;
-                    });
-                  },
-                )
-                    : Register(
-                  onTap: () {
-                    setState(() {
-                      isLogin = true;
-                    });
-                  },
-                ),
+                        onTap: () {
+                          setState(() {
+                            isLogin = false;
+                          });
+                        },
+                      )
+                    : RegisterView(
+                        onTap: () {
+                          setState(() {
+                            isLogin = true;
+                          });
+                        },
+                      ),
               ),
 
               const Spacer(),

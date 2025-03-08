@@ -1,29 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:sayHI/Views/AboutView/AboutView.dart';
 import 'package:sayHI/Views/AuthView/Register.dart';
-import 'package:sayHI/Views/AuthView/SignIn.dart';
-import 'package:sayHI/Views/ContactView/ContactView.dart';
-import 'package:sayHI/Views/HomeView/HomeView.dart';
-import 'package:sayHI/Views/ProfileView/ProfileView.dart';
-import 'package:sayHI/Views/SettingsView/SettingsView.dart';
 
+import '../../Views/AboutView/AboutView.dart';
+import '../../Views/AuthView/SignIn.dart';
+import '../../Views/ContactView/ContactView.dart';
+import '../../Views/HomeView/HomeView.dart';
+import '../../Views/ProfileView/ProfileView.dart';
+import '../../Views/SettingsView/SettingsView.dart';
 
 class SideMenu extends StatelessWidget {
   final Function(Widget) onPageSelected;
   final double menuWidth;
 
-  const SideMenu({Key? key, required this.onPageSelected, this.menuWidth = 250}) : super(key: key);
+  const SideMenu({Key? key, required this.onPageSelected, this.menuWidth = 250})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> menuItems = [
       {"title": "Home", "icon": Icons.home, "page": const HomeView()},
       {"title": "About Us", "icon": Icons.info, "page": const AboutView()},
-      {"title": "Contact Us", "icon": Icons.contact_mail, "page": const ContactView()},
+      {
+        "title": "Contact Us",
+        "icon": Icons.contact_mail,
+        "page": const ContactView()
+      },
       {"title": "Profile", "icon": Icons.person, "page": const ProfileView()},
       {"title": "Sign In", "icon": Icons.login, "page": const SignIn()},
-      {"title": "Register", "icon": Icons.app_registration, "page": const Register()},
-      {"title": "Settings", "icon": Icons.settings, "page": const SettingsView()},
+      {
+        "title": "Register",
+        "icon": Icons.app_registration,
+        "page": const RegisterView()
+      },
+      {
+        "title": "Settings",
+        "icon": Icons.settings,
+        "page": const SettingsView()
+      },
     ];
 
     return Drawer(
@@ -37,7 +50,10 @@ class SideMenu extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               "sayHI",
-              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           const Divider(color: Colors.white54),
@@ -58,10 +74,12 @@ class SideMenu extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuButton({required String title, required IconData icon, required Widget page}) {
+  Widget _buildMenuButton(
+      {required String title, required IconData icon, required Widget page}) {
     return ListTile(
       leading: Icon(icon, color: Colors.white),
-      title: Text(title, style: const TextStyle(color: Colors.white, fontSize: 16)),
+      title: Text(title,
+          style: const TextStyle(color: Colors.white, fontSize: 16)),
       onTap: () => onPageSelected(page),
     );
   }

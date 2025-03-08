@@ -28,7 +28,7 @@ class FooterSection extends StatelessWidget {
                   Navigator.pushNamed(context, '/home');
                 },
                 child: Image.asset(
-                  'assets/images/app_logo.png', // Updated path
+                  'Assets/icons/AppSymbol.png', // Updated path
                   width: 200,
                 ),
               ),

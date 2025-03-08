@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../../GlobalWidgets/CustomFormField.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key, this.onTap});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key, this.onTap});
   final void Function()? onTap;
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterView> createState() => _RegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterState extends State<RegisterView> {
   final TextEditingController _mailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -89,10 +89,6 @@ class _RegisterState extends State<Register> {
                     hintText: 'Enter your password',
                     obscureText: obscurePassword,
                     label: 'Password',
-                    // suffixIcon: IconButton(
-                    //   icon: Icon(obscurePassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
-                    //   onPressed: () => setState(() => obscurePassword = !obscurePassword),
-                    // ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter a password';
                       if (value.length < 6) return 'Password must be at least 6 characters';
@@ -109,10 +105,10 @@ class _RegisterState extends State<Register> {
                     hintText: 'Confirm your password',
                     obscureText: obscureConfirmPassword,
                     label: 'Confirm Password',
-                    // suffixIcon: IconButton(
-                    //   icon: Icon(obscureConfirmPassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
-                    //   onPressed: () => setState(() => obscureConfirmPassword = !obscureConfirmPassword),
-                    // ),
+                    suffixIcon: IconButton(
+                      icon: Icon(obscureConfirmPassword ? Icons.visibility_off : Icons.visibility, color: Colors.white),
+                      onPressed: () => setState(() => obscureConfirmPassword = !obscureConfirmPassword),
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please confirm your password';
                       if (value != _passwordController.text) return 'Passwords do not match';
